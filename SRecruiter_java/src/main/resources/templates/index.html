@@ -5,12 +5,26 @@
         <title>Home Page</title>
     </head>
     <body>
-        <div aling="center">
-            <button>Software Engineering</button>
-            <button>Graphic Design</button>
-            <button>Business Management</button>
-            <button>English</button>
-            <button>Infirmary</button>
+        <div align="center">
+            <a th:href="@{softwareEngineering}">
+                <button >Software Engineering</button>
+            </a>
+
+            <a th:href="@{graphicDesign}">
+                <button>Graphic Design</button>
+            </a>
+
+            <a th:href="@{businessManagement}">
+                <button>Business Management</button>
+            </a>
+
+            <a th:href="@{english}">
+                <button>English</button>
+            </a>
+
+            <a th:href="@{infirmary}">
+                <button>Infirmary</button>
+            </a>
         </div>
     </body>
 </html>

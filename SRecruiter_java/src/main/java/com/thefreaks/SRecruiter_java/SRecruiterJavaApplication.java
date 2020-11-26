@@ -9,5 +9,4 @@ public class SRecruiterJavaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SRecruiterJavaApplication.class, args);
 	}
-
 }
