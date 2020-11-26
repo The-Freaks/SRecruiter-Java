@@ -6,4 +6,5 @@ import com.thefreaks.SRecruiter_java.Model.English;
 
 public interface English_Service {
     List<English> getAllEnglishStudents();
+    void saveEnglishStudent(English english);
 }

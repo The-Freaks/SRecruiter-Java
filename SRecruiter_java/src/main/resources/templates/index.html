@@ -1,30 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
         <title>Home Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <div align="center">
+        <div class="btn-group-vertical">
+            <a>
+                <button class="btn btn-primary btn-sm mb-3">Login</button>
+            </a>
+
             <a th:href="@{softwareEngineering}">
-                <button >Software Engineering</button>
+                <button class="btn btn-outline-info btn-lg">Software Engineering</button>
             </a>
 
             <a th:href="@{graphicDesign}">
-                <button>Graphic Design</button>
+                <button class="btn btn-outline-info btn-lg">Graphic Design</button>
             </a>
 
             <a th:href="@{businessManagement}">
-                <button>Business Management</button>
+                <button class="btn btn-outline-info btn-lg">Business Management</button>
             </a>
 
             <a th:href="@{english}">
-                <button>English</button>
+                <button class="btn btn-outline-info btn-lg">English</button>
             </a>
 
             <a th:href="@{infirmary}">
-                <button>Infirmary</button>
+                <button class="btn btn-outline-info btn-lg">Infirmary</button>
             </a>
         </div>
+        <style>
+            .btn{
+                margin: 15px;
+            }
+            .btn-group-vertical{
+                display: grid;
+            }
+        </style>
     </body>
 </html>
