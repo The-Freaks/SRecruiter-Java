@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,7 +47,14 @@ public class StudentController {
    @PostMapping("/saveSEStudent")
    public String saveSEStudent(@ModelAttribute("SE_Student") SoftwareEngineering softwareEngineering){
        se_service.saveSEStudent(softwareEngineering);
-       return "redirect:/";
+       return "redirect:/softwareEngineering";
+   }
+   // Update Software Engineering Student
+   @GetMapping("/showFormForUpdate_SE/{id}")
+   public String showFormForUpdate_SE(@PathVariable (value = "id") long id, Model model){
+       SoftwareEngineering softwareEngineering = se_service.getSEStudentById(id);
+       model.addAttribute("SE_Student", softwareEngineering);
+       return "new_SE_student";
    }
 
 
@@ -69,7 +77,14 @@ public class StudentController {
    @PostMapping("/saveGDStudent")
    public String saveGDStudent(@ModelAttribute("GD_Student") GraphicDesign graphicDesign){
        gd_service.saveGDStudent(graphicDesign);
-       return "redirect:/";
+       return "redirect:/graphicDesign";
+   }
+   // Update Graphic Design Student
+   @GetMapping("/showFormForUpdate_GD/{id}")
+   public String showFormForUpdate_GD(@PathVariable (value = "id") long id, Model model){
+       GraphicDesign graphicDesign = gd_service.getGDStudentById(id);
+       model.addAttribute("GD_Student", graphicDesign);
+       return "new_GD_student";
    }
 
 
@@ -92,7 +107,14 @@ public class StudentController {
    @PostMapping("/saveBMStudent")
    public String saveBMStudent(@ModelAttribute("BM_Student") BusinessManagement businessManagement){
        bm_service.saveBMStudent(businessManagement);
-       return "redirect:/";
+       return "redirect:/businessManagement";
+   }
+   // Update Business Management Student
+   @GetMapping("/showFormForUpdate_BM/{id}")
+   public String showFormForUpdate_BM(@PathVariable (value = "id") long id, Model model){
+       BusinessManagement businessManagement = bm_service.getBMStudentById(id);
+       model.addAttribute("BM_Student", businessManagement);
+       return "new_BM_student";
    }
 
 
@@ -115,7 +137,14 @@ public class StudentController {
    @PostMapping("/saveEnglishStudent")
    public String saveEnglishStudent(@ModelAttribute("English_Student") English english){
        english_service.saveEnglishStudent(english);
-       return "redirect:/";
+       return "redirect:/english";
+   }
+   // Update English Student
+   @GetMapping("/showFormForUpdate_English/{id}")
+   public String showFormForUpdate_English(@PathVariable (value = "id") long id, Model model){
+       English english = english_service.getEnglishStudentById(id);
+       model.addAttribute("English_Student", english);
+       return "new_English_student";
    }
 
 
@@ -138,6 +167,13 @@ public class StudentController {
    @PostMapping("/saveInfirmaryStudent")
    public String saveInfirmaryStudent(@ModelAttribute("Infirmary_Student") Infirmary infirmary){
        infirmary_service.saveInfirmaryStudent(infirmary);
-       return "redirect:/";
+       return "redirect:/infirmary";
+   }
+   // Update Infirmary Student
+   @GetMapping("/showFormForUpdate_Infirmary/{id}")
+   public String showFormForUpdate_Infirmary(@PathVariable (value = "id") long id, Model model){
+       Infirmary infirmary = infirmary_service.getInfirmaryStudentById(id);
+       model.addAttribute("Infirmary_Student", infirmary);
+       return "new_Infirmary_student";
    }
 }

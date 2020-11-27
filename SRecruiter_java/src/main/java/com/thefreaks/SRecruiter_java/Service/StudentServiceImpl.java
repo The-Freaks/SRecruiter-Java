@@ -1,6 +1,7 @@
 package com.thefreaks.SRecruiter_java.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.thefreaks.SRecruiter_java.Model.BusinessManagement;
 import com.thefreaks.SRecruiter_java.Model.English;
@@ -30,6 +31,18 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
     public void saveSEStudent(SoftwareEngineering softwareEngineering) {
         this.se_repository.save(softwareEngineering);
     }
+    @Override
+    public SoftwareEngineering getSEStudentById(long id) {
+        Optional<SoftwareEngineering> optional = se_repository.findById(id);
+        SoftwareEngineering softwareEngineering = null;
+        if(optional.isPresent()){
+            softwareEngineering = optional.get();
+        }else {
+            throw new RuntimeException("Student not found for id ::" + id);
+        }
+        return softwareEngineering;
+    }
+
 
     // Infirmary
     @Autowired
@@ -42,6 +55,18 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
     public void saveInfirmaryStudent(Infirmary infirmary) {
         this.infirmary_repository.save(infirmary);
     }
+    @Override
+    public Infirmary getInfirmaryStudentById(long id) {
+        Optional<Infirmary> optional = infirmary_repository.findById(id);
+        Infirmary infirmary = null;
+        if(optional.isPresent()){
+            infirmary = optional.get();
+        }else {
+            throw new RuntimeException("Student not found for id ::" + id);
+        }
+        return infirmary;
+    }
+
 
     // Graphic Design
     @Autowired
@@ -54,6 +79,18 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
     public void saveGDStudent(GraphicDesign graphicDesign) {
         this.gd_repository.save(graphicDesign);
     }
+    @Override
+    public GraphicDesign getGDStudentById(long id) {
+        Optional<GraphicDesign> optional = gd_repository.findById(id);
+        GraphicDesign graphicDesign = null;
+        if(optional.isPresent()){
+            graphicDesign = optional.get();
+        }else {
+            throw new RuntimeException("Student not found for id ::" + id);
+        }
+        return graphicDesign;
+    }
+
 
     // English
     @Autowired
@@ -66,6 +103,18 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
     public void saveEnglishStudent(English english) {
         this.english_repository.save(english);
     }
+    @Override
+    public English getEnglishStudentById(long id) {
+        Optional<English> optional = english_repository.findById(id);
+        English english = null;
+        if(optional.isPresent()){
+            english = optional.get();
+        }else {
+            throw new RuntimeException("Student not found for id ::" + id);
+        }
+        return english;
+    }
+
 
     // Business Management
     @Autowired
@@ -77,5 +126,16 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
     @Override
     public void saveBMStudent(BusinessManagement businessManagement) {
         this.bm_repository.save(businessManagement);
+    }
+    @Override
+    public BusinessManagement getBMStudentById(long id) {
+        Optional<BusinessManagement> optional = bm_repository.findById(id);
+        BusinessManagement businessManagement = null;
+        if(optional.isPresent()){
+            businessManagement = optional.get();
+        }else {
+            throw new RuntimeException("Student not found for id ::" + id);
+        }
+        return businessManagement;
     }
 }

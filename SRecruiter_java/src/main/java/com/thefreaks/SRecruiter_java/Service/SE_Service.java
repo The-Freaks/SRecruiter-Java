@@ -7,4 +7,5 @@ import com.thefreaks.SRecruiter_java.Model.SoftwareEngineering;
 public interface SE_Service {
     List<SoftwareEngineering> getAllSEStudents();
     void saveSEStudent(SoftwareEngineering softwareEngineering);
+    SoftwareEngineering getSEStudentById(long id);
 }

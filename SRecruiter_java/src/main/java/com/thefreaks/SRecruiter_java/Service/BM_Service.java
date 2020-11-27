@@ -7,4 +7,5 @@ import com.thefreaks.SRecruiter_java.Model.BusinessManagement;
 public interface BM_Service {
     List<BusinessManagement> getAllBMStudents();
     void saveBMStudent(BusinessManagement businessManagement);
+    BusinessManagement getBMStudentById(long id);
 }
