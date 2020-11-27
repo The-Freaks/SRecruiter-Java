@@ -8,4 +8,5 @@ public interface GD_Service {
     List<GraphicDesign> getAllGDStudents();
     void saveGDStudent(GraphicDesign graphicDesign);
     GraphicDesign getGDStudentById(long id);
+    void deleteGDStudentById(long id);
 }

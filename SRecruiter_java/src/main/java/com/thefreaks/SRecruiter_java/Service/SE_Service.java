@@ -8,4 +8,5 @@ public interface SE_Service {
     List<SoftwareEngineering> getAllSEStudents();
     void saveSEStudent(SoftwareEngineering softwareEngineering);
     SoftwareEngineering getSEStudentById(long id);
+    void deleteSEStudentById(long id);
 }

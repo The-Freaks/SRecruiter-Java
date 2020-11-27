@@ -8,4 +8,5 @@ public interface English_Service {
     List<English> getAllEnglishStudents();
     void saveEnglishStudent(English english);
     English getEnglishStudentById(long id);
+    void deleteEnglishStudentById(long id);
 }

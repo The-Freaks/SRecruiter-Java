@@ -8,4 +8,5 @@ public interface BM_Service {
     List<BusinessManagement> getAllBMStudents();
     void saveBMStudent(BusinessManagement businessManagement);
     BusinessManagement getBMStudentById(long id);
+    void deleteBMStudentById(long id);
 }

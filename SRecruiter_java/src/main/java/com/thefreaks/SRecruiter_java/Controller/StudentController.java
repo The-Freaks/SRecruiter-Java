@@ -56,6 +56,12 @@ public class StudentController {
        model.addAttribute("SE_Student", softwareEngineering);
        return "new_SE_student";
    }
+   // Delete Software Engineering Student
+   @GetMapping("/deleteStudent_SE/{id}")
+   public String deleteStudent_SE(@PathVariable (value = "id") long id){
+       this.se_service.deleteSEStudentById(id);
+       return "redirect:/softwareEngineering";
+   }
 
 
    // Display the graphic design student list
@@ -85,6 +91,12 @@ public class StudentController {
        GraphicDesign graphicDesign = gd_service.getGDStudentById(id);
        model.addAttribute("GD_Student", graphicDesign);
        return "new_GD_student";
+   }
+   // Delete Graphic Design Student
+   @GetMapping("/deleteStudent_GD/{id}")
+   public String deleteStudent_GD(@PathVariable (value = "id") long id){
+       this.gd_service.deleteGDStudentById(id);
+       return "redirect:/graphicDesign";
    }
 
 
@@ -116,6 +128,12 @@ public class StudentController {
        model.addAttribute("BM_Student", businessManagement);
        return "new_BM_student";
    }
+   // Delete Business Management Student
+   @GetMapping("/deleteStudent_BM/{id}")
+   public String deleteStudent_BM(@PathVariable (value = "id") long id){
+       this.bm_service.deleteBMStudentById(id);
+       return "redirect:/businessManagement";
+   }
 
 
    // Display the english student list
@@ -146,6 +164,12 @@ public class StudentController {
        model.addAttribute("English_Student", english);
        return "new_English_student";
    }
+   // Delete English Student
+   @GetMapping("/deleteStudent_English/{id}")
+   public String deleteStudent_English(@PathVariable (value = "id") long id){
+       this.english_service.deleteEnglishStudentById(id);
+       return "redirect:/english";
+   }
 
 
    // Display the infirmary student list
@@ -175,5 +199,11 @@ public class StudentController {
        Infirmary infirmary = infirmary_service.getInfirmaryStudentById(id);
        model.addAttribute("Infirmary_Student", infirmary);
        return "new_Infirmary_student";
+   }
+   // Delete Infirmary Student
+   @GetMapping("/deleteStudent_Infirmary/{id}")
+   public String deleteStudent_Infirmary(@PathVariable (value = "id") long id){
+       this.infirmary_service.deleteInfirmaryStudentById(id);
+       return "redirect:/infirmary";
    }
 }

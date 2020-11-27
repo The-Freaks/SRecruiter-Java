@@ -42,6 +42,10 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
         }
         return softwareEngineering;
     }
+    @Override
+    public void deleteSEStudentById(long id) {
+        this.se_repository.deleteById(id);
+    }
 
 
     // Infirmary
@@ -65,6 +69,10 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
             throw new RuntimeException("Student not found for id ::" + id);
         }
         return infirmary;
+    }
+    @Override
+    public void deleteInfirmaryStudentById(long id) {
+        this.infirmary_repository.deleteById(id);
     }
 
 
@@ -90,6 +98,10 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
         }
         return graphicDesign;
     }
+    @Override
+    public void deleteGDStudentById(long id) {
+        this.gd_repository.deleteById(id);
+    }
 
 
     // English
@@ -114,6 +126,10 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
         }
         return english;
     }
+    @Override
+    public void deleteEnglishStudentById(long id) {
+        this.english_repository.deleteById(id);
+    }
 
 
     // Business Management
@@ -137,5 +153,9 @@ public class StudentServiceImpl implements BM_Service, English_Service, GD_Servi
             throw new RuntimeException("Student not found for id ::" + id);
         }
         return businessManagement;
+    }
+    @Override
+    public void deleteBMStudentById(long id) {
+        this.bm_repository.deleteById(id);
     }
 }
