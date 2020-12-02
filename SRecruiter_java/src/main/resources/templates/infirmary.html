@@ -9,7 +9,7 @@
         <div class="container my-2">
             <h1>Infirmary Student List</h1>
     
-            <a th:href="@{/addNewInfirmaryStudentForm}" class="btn btn-primary btn-sm mb-3"> Add Student </a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/addNewInfirmaryStudentForm}" class="btn btn-primary btn-sm mb-3"> Add Student </a>
     
             <table border="1" class="table table-striped table-responsive-md">
                 <thead>
@@ -18,7 +18,7 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone number</th>
-                        <th> Actions </th>
+                        <th sec:authorize="isAuthenticated()"> Actions </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
                         <td th:text="${student.lastName}"></td>
                         <td th:text="${student.email}"></td>
                         <td th:text="${student.number}"></td>
-                        <td> 
+                        <td sec:authorize="isAuthenticated()"> 
                             <a th:href="@{/showFormForUpdate_Infirmary/{id}(id=${student.id})}" class="btn btn-primary">Update</a>
                             <a th:href="@{/deleteStudent_Infirmary/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
                         </td>

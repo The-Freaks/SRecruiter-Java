@@ -17,47 +17,47 @@
                 <h1>Login Page</h1>
                 <form th:action="@{/login}" th:object="${user}" method="post">
                     <!-- Error message -->
-                <div th:if="${param.error}">
-                    <div class="alert alert-danger">Invalid username or password.</div>
-                </div>
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">Invalid username or password.</div>
+                    </div>
 
-                <!-- Logout message -->
-                <div th:if="${param.Logout}">
-                    <div class="alert alert-danger">You have been logged out.</div>
-                </div>
+                    <!-- Logout message -->
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-danger">You have been logged out.</div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input id="username" 
-                    type="text" 
-                    name="username" 
-                    class="form-control" 
-                    placeholder="Enter Email ID" 
-                    autofocus="autofocus">
-                </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input id="username" 
+                        type="text" 
+                        name="username" 
+                        class="form-control" 
+                        placeholder="Enter Email ID" 
+                        autofocus="autofocus">
+                    </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" 
-                    type="password" 
-                    name="password" 
-                    class="form-control" 
-                    placeholder="Enter Password" 
-                    autofocus="autofocus">
-                </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" 
+                        type="password" 
+                        name="password" 
+                        class="form-control" 
+                        placeholder="Enter Password" 
+                        autofocus="autofocus">
+                    </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit"
-                            id="Login-submit"
-                            name="Login-submit"
-                            value="Log In"
-                            class="form-control btn btn-primary">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit"
+                                id="Login-submit"
+                                name="Login-submit"
+                                value="Log In"
+                                class="form-control btn btn-primary">
+                            </div>
                         </div>
                     </div>
-                </div>
-                    
+                    <span>Return to <a th:href="@{/}">Home page</a>!</span>
                 </form>
             </div>
         </div>
