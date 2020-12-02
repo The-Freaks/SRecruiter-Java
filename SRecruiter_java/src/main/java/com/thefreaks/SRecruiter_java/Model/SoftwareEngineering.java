@@ -25,7 +25,7 @@ public class SoftwareEngineering {
     private String email;
 
     @Column(name = "phone_number")
-    private int number;
+    private String number;
 
     public long getId() {
         return this.id;
@@ -59,11 +59,11 @@ public class SoftwareEngineering {
         this.email = email;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return this.number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 }
