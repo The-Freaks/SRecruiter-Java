@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>Registration</title>
+</head>
+
+<body>
+    <br>
+    <br>
+    <!-- Login form -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Login Page</h1>
+                <form th:action="@{/registration}" th:object="${user}" method="post">
+                    <!-- Error message -->
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid username or password.</div>
+                </div>
+
+                <!-- Logout message -->
+                <div th:if="${param.Logout}">
+                    <div class="alert alert-danger">You have been logged out.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" 
+                    type="text" 
+                    name="username" 
+                    class="form-control" 
+                    placeholder="Enter Email ID" 
+                    autofocus="autofocus">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" 
+                    type="text" 
+                    name="password" 
+                    class="form-control" 
+                    placeholder="Enter Password" 
+                    autofocus="autofocus">
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                            id="Login-submit"
+                            name="Login-submit"
+                            value="Log In"
+                            class="form-control btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>
