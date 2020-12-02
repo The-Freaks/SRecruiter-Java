@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 "/deleteStudent_GD/{id}",
                 "/deleteStudent_BM/{id}",
                 "/deleteStudent_English/{id}",
-                "/deleteStudent_Infirmary/{id}").permitAll()
+                "/deleteStudent_Infirmary/{id}").hasAuthority("ROLE_ADMIN")
             .anyRequest().permitAll()
             .and()
             .formLogin()
