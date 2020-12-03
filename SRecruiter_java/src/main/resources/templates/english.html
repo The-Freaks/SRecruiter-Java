@@ -2,39 +2,125 @@
 <html lang="en" xmlns="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-        <title>English Page</title>
+        <title>SRecruiter English</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link th:href="@{/style/css/main.css}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container my-2">
-            <h1>English Student List</h1>
-            
-            <a sec:authorize="isAuthenticated()" th:href="@{/addNewEnglishStudentForm}" class="btn btn-primary btn-sm mb-3"> Add Student </a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" th:href="@{/}">SRecruiter</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" th:href="@{softwareEngineering}">Software Engineering</a>
+                      <a class="dropdown-item" th:href="@{graphicDesign}">Graphic Design</a>
+                      <a class="dropdown-item" th:href="@{businessManagement}">Business Management</a>
+                      <a class="dropdown-item" th:href="@{english}">English</a>
+                      <a class="dropdown-item" th:href="@{infirmary}">Infirmary</a>
+                    </div>
+                  </li>
+              </ul>
+              <form class="form-inline ">
+                
+                <a sec:authorize="isAuthenticated()" th:href="@{/registration}" class="btn btn-success mr-sm-2">
+                    <label>
+                        <i class="material-icons">&#xE147;</i> 
+                        Add New User
+                    </label>
+                </a>
     
-            <table border="1" class="table table-striped table-responsive-md">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone number</th>
-                        <th sec:authorize="isAuthenticated()"> Actions </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="student : ${English_StudentList}">
-                        <td th:text="${student.firstName}"></td>
-                        <td th:text="${student.lastName}"></td>
-                        <td th:text="${student.email}"></td>
-                        <td th:text="${student.number}"></td>
-                        <td sec:authorize="isAuthenticated()"> 
-                            <a th:href="@{/showFormForUpdate_English/{id}(id=${student.id})}" class="btn btn-primary">Update</a>
-                            <a th:href="@{/deleteStudent_English/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <a th:href="@{/}"> Back to HomePage</a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-outline-success mr-sm-2">
+                    <span>Login</span>
+                </a>
+    
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="btn btn-outline-danger mr-sm-2">
+                    <span>Logout</span>
+                </a>
+              </form>
+            </div>
+        </nav>
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <a th:href="@{/}"
+                                    class="btn">
+                                    <i class="material-icons">&#xE5C4;</i>
+                                </a>
+                            </div>
+                            <div class="col-sm-8">
+                                <h2 sec:authorize="!isAuthenticated()">English Students <b>List</b></h2>
+                                <h2 sec:authorize="isAuthenticated()">Manage English <b>Students</b></h2>
+                            </div>
+                            <div class="col-sm-3">
+                                <a sec:authorize="isAuthenticated()" 
+                                    th:href="@{/addNewEnglishStudentForm}" 
+                                    class="btn btn-success">
+                                    <i class="material-icons">
+                                        &#xE147;
+                                    </i> 
+                                    <span>
+                                        Add New Student
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th sec:authorize="isAuthenticated()">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="student : ${English_StudentList}">
+                                <td th:text="${student.firstName}"></td>
+                                <td th:text="${student.lastName}"></td>
+                                <td th:text="${student.email}"></td>
+                                <td th:text="${student.number}"></td>
+                                <td sec:authorize="isAuthenticated()">
+                                    <a th:href="@{/showFormForUpdate_English/{id}(id=${student.id})}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a th:href="@{/deleteStudent_English/{id}(id=${student.id})}" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link">4</a></li>
+                            <li class="page-item"><a href="#" class="page-link">5</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>        
         </div>
     </body>
 </html>
