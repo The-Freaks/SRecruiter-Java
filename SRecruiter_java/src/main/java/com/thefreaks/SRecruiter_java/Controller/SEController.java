@@ -22,13 +22,13 @@ public class SEController {
        model.addAttribute("SE_StudentList", se_service.getAllSEStudents());
        return "softwareEngineering";
    }
-   // Add new software engineering student
-   @RequestMapping("/addNewSEStudentForm")
-   public String addNewSEStudent(Model model){
-       SoftwareEngineering softwareEngineering = new SoftwareEngineering();
-       model.addAttribute("SE_Student", softwareEngineering);
-       return "admin/new_SE_student";
-   }
+//    // Add new software engineering student
+//    @RequestMapping("/addNewSEStudentForm")
+//    public String addNewSEStudent(Model model){
+//        SoftwareEngineering softwareEngineering = new SoftwareEngineering();
+//        model.addAttribute("SE_Student", softwareEngineering);
+//        return "admin/new_SE_student";
+//    }
    // Save Software Engineering Student
    @PostMapping("/saveSEStudent")
    public String saveSEStudent(@ModelAttribute("SE_Student") SoftwareEngineering softwareEngineering){
