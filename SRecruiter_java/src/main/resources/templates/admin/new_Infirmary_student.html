@@ -3,35 +3,61 @@
     <head>
         <meta charset="ISO-8859-1">
         <title>SRecruiter</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link th:href="@{/style/css/login.css}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>Registration</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="container">
-            <h1>Add new infirmary student form!</h1>
-            <hr>
-    
+        <div class="center addStudentFormBackground">
             <form action="#" th:action="@{/saveInfirmaryStudent}" th:object="${Infirmary_Student}" method="POST">
                 <!-- Hidden field to handle update -->
                 <input type="hidden" th:field="*{id}" />
-                
-                <p>Student First Name</p>
-                <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
-                
-                <p>Student Last Name</p>
-                <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
-                
-                <p>Student Email</p>
-                <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
-                
-                <p>Student Phone Number</p>
-                <input type="text" th:field="*{number}" class="form-control mb-4 col-4">
 
-                <button type="submit" class="btn btn-info col-2"> Save Student</button>
+                <h3 class="whiteColor addStudentH3">Add Infirmary Student</h3>
+                <hr class="whiteColor"/>
+                <!-- FirstName LABEL INPUT-->
+                <div id="firstname" style="padding-left: 90px; padding-bottom: 5px;">
+                    <div id="FirstID" >
+                        <label class="whiteColor">First Name</label>
+                    </div>
+                    <input type="text" th:field="*{firstName}">
+                </div>
+        
+                <!-- LastName LABEL INPUT-->
+                <div id="lastname" style="padding-left: 90px; padding-bottom: 5px;">
+                    <div id="LastID">
+                        <label class="whiteColor">Last Name</label>
+                    </div>
+                    <input type="text" th:field="*{lastName}">
+                </div>
+        
+                <!-- Email LABEL INPUT-->
+                <div id="email" style="padding-left: 90px; padding-bottom: 5px;">
+                    <div id="emailID">
+                        <label class="whiteColor">Email</label>
+                    </div>
+                    <input type="email" th:field="*{email}">
+                </div>
+        
+                <!-- PASSWORD LABEL INPUT-->
+                <div id="password" style="padding-left: 90px; padding-bottom: 5px;">
+                    <div id="passdiv">
+                        <div id="passID">
+                            <label class="whiteColor">Phone Number</label>
+                        </div>
+                        <input type="text" th:field="*{number}">
+                    </div>
+                </div>
+        
+                <!-- BUTTON -->
+                <div id="buttonID" style="padding-top: 25px;">
+                    <button type="submit" class="btn btn-outline-light"> Save Student</button>
+                    <hr class="whiteColor">
+                    <span class="whiteColor">Return to <a th:href="@{/}">Home Page</a>!</span>
+                </div>
             </form>
-    
-            <hr>
-    
-            <a th:href="@{/}"> Back to Student List</a>
         </div>
     </body>
 </html>

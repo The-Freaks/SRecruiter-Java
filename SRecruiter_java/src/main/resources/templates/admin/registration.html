@@ -4,54 +4,89 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link th:href="@{/style/css/login.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>Registration</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <br>
-    <br>
-    <!-- Registration form -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <!-- Success message -->
-                <div th:if="${param.success}">
-                    <div class="alert alert-info">User succesfully registrated!</div>
+    <!-- Login page on the left   -->
+    <div id="lefty-registration">
+        <!-- Main place with the background pic and info    -->
+        <div id="main"></div>
+        <!-- FORM STARTS HERE -->
+        <form th:action="@{/registration}" th:object="${user}" method="post">
+            <!-- Head title -->
+            <h3 class="whiteColor" style="padding-top: 25px;">Register new admin</h3>
+
+            <p class="whiteColor">Please fill the forms below.</p>
+            <hr class="whiteColor"/>
+            <!-- FirstName LABEL INPUT-->
+            <div id="firstname">
+                <div id="FirstID">
+                    <label class="whiteColor" for="firstName">First Name</label>
+                </div>
+                <div>
+                    <input type="text" 
+                    placeholder="Type your First Name" 
+                    name="username" 
+                    th:field="*{firstName}" 
+                    autofocus="autofocus" required/>
+                </div>
+            </div>
+
+            <!-- LastName LABEL INPUT-->
+            <div id="lastname">
+                <div id="LastID">
+                    <label class="whiteColor" for="lastName">Last Name</label>
+                </div>
+                <div>
+                    <input type="text" 
+                    placeholder="Type your Last Name" 
+                    name="username" 
+                    th:field="*{lastName}" 
+                    autofocus="autofocus" required/>
+                </div>
+            </div>
+
+            <!-- Email LABEL INPUT-->
+            <div id="email">
+                <div id="emailID">
+                    <label class="whiteColor" for="email">Email</label>
+                </div>
+                <div>
+                    <input type="email" 
+                    placeholder="Type your email" 
+                    name="username" 
+                    th:field="*{email}" 
+                    autofocus="autofocus" required/>
+                </div>
+            </div>
+
+            <!-- PASSWORD LABEL INPUT-->
+            <div id="password">
+                <div id="passdiv">
+                    <div id="passID">
+                        <label class="whiteColor" for="password">Password</label>
+                    </div>
+                    <div>
+                        <input type="password" 
+                        placeholder="Type your password" 
+                        name="password" 
+                        th:field="*{password}" 
+                        autofocus="autofocus" required />
+                    </div>
                 </div>
 
-                <h1>Registration</h1>
-                <form th:action="@{/registration}" th:object="${user}" method="post">
-                    <div class="form-group">
-                        <label class="control-label" for="firstName">
-                            First Name
-                        </label>
-                        <input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="lastName">
-                            Last Name
-                        </label>
-                        <input id="lastName" class="form-control" th:field="*{lastName}" required autofocus="autofocus">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="email">
-                            Email
-                        </label>
-                        <input id="email" class="form-control" type="email" th:field="*{email}" required autofocus="autofocus">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="password">
-                            Password
-                        </label>
-                        <input id="password" class="form-control" type="password" th:field="*{password}" required autofocus="autofocus">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success">Register</button>
-                        <span>Return to <a th:href="@{/}">Home page</a>!</span>
-                    </div>
-                </form>
+            <!-- BUTTON -->
+            <div id="buttonID">
+                <button type="submit" class="btn btn-outline-light">Register</button>
+                <hr class="whiteColor"/>
+                <span class="whiteColor">Return to <a th:href="@{/}">Home page</a>!</span>
             </div>
-        </div>
+        </form>
     </div>
 
     <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

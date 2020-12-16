@@ -4,63 +4,68 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link th:href="@{/style/css/login.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>Registration</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <br>
-    <br>
-    <!-- Login form -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h1>Login Page</h1>
-                <form th:action="@{/login}" th:object="${user}" method="post">
-                    <!-- Error message -->
-                    <div th:if="${param.error}">
-                        <div class="alert alert-danger">Invalid username or password.</div>
-                    </div>
-
-                    <!-- Logout message -->
-                    <div th:if="${param.logout}">
-                        <div class="alert alert-danger">You have been logged out.</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input id="username" 
-                        type="text" 
-                        name="username" 
-                        class="form-control" 
-                        placeholder="Enter Email ID" 
-                        autofocus="autofocus">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" 
-                        type="password" 
-                        name="password" 
-                        class="form-control" 
-                        placeholder="Enter Password" 
-                        autofocus="autofocus">
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-6 col-sm-offset-3">
-                                <input type="submit"
-                                id="Login-submit"
-                                name="Login-submit"
-                                value="Log In"
-                                class="form-control btn btn-primary">
-                            </div>
-                        </div>
-                    </div>
-                    <span>Return to <a th:href="@{/}">Home page</a>!</span>
-                </form>
+    <!-- Login page on the left   -->
+    <div id="lefty-login">
+        <!-- Main place with the background pic and info    -->
+        <div id="main"></div>
+        <!-- FORM STARTS HERE -->
+        <form th:action="@{/login}" th:object="${user}" method="post">
+            <!-- Error message -->
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Invalid username or password.</div>
             </div>
-        </div>
+
+            <!-- Logout message -->
+            <div th:if="${param.logout}">
+                        <div class="alert alert-danger">You have been logged out.</div>
+            </div>
+            <!-- Head title -->
+            <h3 class="whiteColor" >Log In</h3>
+
+            <p class="whiteColor">Please fill the forms below.</p>
+            <hr class="whiteColor"/>
+            <!-- USER LABEL INPUT-->
+            <div id="username">
+
+                <div id="userID">
+                    <label>Username</label>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Type your username" name="username" required />
+                </div>
+
+            </div>
+
+            <!-- PASSWORD LABEL INPUT-->
+            <div id="password">
+                <div id="passdiv">
+                    <label class="whiteColor">Password</label>
+
+                    <div>
+                        <input type="password" placeholder="Type your password" name="password" required />
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTON -->
+            <div id="buttonID">
+                <input type="submit" 
+                name="Login-submit"
+                value="Log In"
+                class="btn btn-outline-light">
+                <hr class="whiteColor"/>
+                <span class="whiteColor">Return to <a th:href="@{/}">Home page</a>!</span>
+            </div>
+        </form>
     </div>
-</body>
 </html>
