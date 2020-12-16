@@ -1,5 +1,8 @@
 package com.thefreaks.SRecruiter_java.Controller;
 
+import com.thefreaks.SRecruiter_java.Repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,8 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
     // Display the index.html file
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/")
-    public String getHomePage(){
+    public String getHomePage(Model model){
+        int max = userRepository.maxUser();
+        int countStudents= userRepository.maxUser() + userRepository.maxUser();
+        model.addAttribute("User_Service", countStudents);
         return "index";
     }
 
@@ -22,6 +31,17 @@ public class MainController {
         }
         return "login";
     }
+
+    // Count the users
+    
+    
+    // @GetMapping("/test")
+    // public void UserCount(Model model){
+    //     int max = userRepository.maxUser();
+    //     model.addAttribute("User_Service", max);
+    //     System.out.println("test" + max);
+        
+    // }
 
     private boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -194,6 +194,10 @@ public class StudentServiceImpl
     @Autowired
     private UserRepository userRepository;
 
+    public int getMaxUserCount(){
+       return userRepository.maxUser();
+    }
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
