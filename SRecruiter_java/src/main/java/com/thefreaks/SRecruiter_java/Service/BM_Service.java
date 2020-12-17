@@ -9,4 +9,6 @@ public interface BM_Service {
     void saveBMStudent(BusinessManagement businessManagement);
     BusinessManagement getBMStudentById(long id);
     void deleteBMStudentById(long id);
+
+    int getMaxBMStudents();
 }

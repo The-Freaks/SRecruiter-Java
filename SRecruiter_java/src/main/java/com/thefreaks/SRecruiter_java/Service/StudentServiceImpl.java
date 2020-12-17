@@ -38,6 +38,11 @@ public class StudentServiceImpl
     private SE_Repository se_repository;
 
     @Override
+    public int getMaxSEStudents() {
+        return se_repository.maxSEStudents();
+    }
+
+    @Override
     public List<SoftwareEngineering> getAllSEStudents() {
         return se_repository.findAll();
     }
@@ -64,10 +69,15 @@ public class StudentServiceImpl
         this.se_repository.deleteById(id);
     }
 
-
+    //-------------------------------------------------------
     // Infirmary
     @Autowired
     private Infirmary_Repository infirmary_repository;
+
+    @Override
+    public int getMaxInfirmaryStudents() {
+        return infirmary_repository.maxInfirmaryStudents();
+    }
 
     @Override
     public List<Infirmary> getAllInfirmaryStudents() {
@@ -96,9 +106,15 @@ public class StudentServiceImpl
         this.infirmary_repository.deleteById(id);
     }
 
+    //-------------------------------------------------------
     // Graphic Design
     @Autowired
     private GD_Repository gd_repository;
+
+    @Override
+    public int getMaxGDStudents() {
+        return gd_repository.maxGDStudents();
+    }
 
     @Override
     public List<GraphicDesign> getAllGDStudents() {
@@ -127,9 +143,15 @@ public class StudentServiceImpl
         this.gd_repository.deleteById(id);
     }
 
+    //-------------------------------------------------------
     // English
     @Autowired
     private English_Repository english_repository;
+
+    @Override
+    public int getMaxEnglishStudents() {
+        return english_repository.maxEnglishStudents();
+    }
 
     @Override
     public List<English> getAllEnglishStudents() {
@@ -158,9 +180,15 @@ public class StudentServiceImpl
         this.english_repository.deleteById(id);
     }
 
+    //-------------------------------------------------------
     // Business Management
     @Autowired
     private BM_Repository bm_repository;
+
+    @Override
+    public int getMaxBMStudents() {
+        return bm_repository.maxBMStudents();
+    }
 
     @Override
     public List<BusinessManagement> getAllBMStudents() {
@@ -189,7 +217,7 @@ public class StudentServiceImpl
         this.bm_repository.deleteById(id);
     }
 
-    
+    //-------------------------------------------------------
     // User registration
     @Autowired
     private UserRepository userRepository;

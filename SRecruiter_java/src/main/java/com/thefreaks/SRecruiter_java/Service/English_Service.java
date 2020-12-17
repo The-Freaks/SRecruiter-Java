@@ -9,4 +9,6 @@ public interface English_Service {
     void saveEnglishStudent(English english);
     English getEnglishStudentById(long id);
     void deleteEnglishStudentById(long id);
+
+    int getMaxEnglishStudents();
 }

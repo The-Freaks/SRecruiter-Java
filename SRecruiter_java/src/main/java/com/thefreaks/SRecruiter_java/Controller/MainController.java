@@ -1,6 +1,7 @@
 package com.thefreaks.SRecruiter_java.Controller;
 
-import com.thefreaks.SRecruiter_java.Repository.UserRepository;
+// import com.thefreaks.SRecruiter_java.Repository.UserRepository;
+import com.thefreaks.SRecruiter_java.Service.StudentServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -14,13 +15,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     // Display the index.html file
     @Autowired
-    private UserRepository userRepository;
+    private StudentServiceImpl studentServiceImpl;
 
     @GetMapping("/")
     public String getHomePage(Model model){
-        int max = userRepository.maxUser();
-        int countStudents= userRepository.maxUser() + userRepository.maxUser();
-        model.addAttribute("User_Service", countStudents);
+        int totalUsers = studentServiceImpl.getMaxUserCount();
+        int totalSEStudents = studentServiceImpl.getMaxSEStudents();
+        int totalGDStudents = studentServiceImpl.getMaxGDStudents();
+        int totalBMStudents = studentServiceImpl.getMaxBMStudents();
+        int totalEnglishStudents = studentServiceImpl.getMaxEnglishStudents();
+        int totalInfirmaryStudents = studentServiceImpl.getMaxInfirmaryStudents();
+
+        int countAllStudents = totalSEStudents + totalGDStudents + totalBMStudents + totalEnglishStudents + totalInfirmaryStudents;
+        model.addAttribute("Count_All_Students", countAllStudents);
+
+        model.addAttribute("Total_Users", totalUsers);
+        model.addAttribute("Total_SE_Students", totalSEStudents);
+        model.addAttribute("Total_GD_Students", totalGDStudents);
+        model.addAttribute("Total_BM_Students", totalBMStudents);
+        model.addAttribute("Total_English_Students", totalEnglishStudents);
+        model.addAttribute("Total_Infirmary_Students", totalInfirmaryStudents);
         return "index";
     }
 
@@ -31,17 +45,6 @@ public class MainController {
         }
         return "login";
     }
-
-    // Count the users
-    
-    
-    // @GetMapping("/test")
-    // public void UserCount(Model model){
-    //     int max = userRepository.maxUser();
-    //     model.addAttribute("User_Service", max);
-    //     System.out.println("test" + max);
-        
-    // }
 
     private boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

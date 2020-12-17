@@ -9,4 +9,6 @@ public interface GD_Service {
     void saveGDStudent(GraphicDesign graphicDesign);
     GraphicDesign getGDStudentById(long id);
     void deleteGDStudentById(long id);
+    
+    int getMaxGDStudents();
 }

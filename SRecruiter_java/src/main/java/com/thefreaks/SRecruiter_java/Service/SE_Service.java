@@ -9,4 +9,6 @@ public interface SE_Service {
     void saveSEStudent(SoftwareEngineering softwareEngineering);
     SoftwareEngineering getSEStudentById(long id);
     void deleteSEStudentById(long id);
+
+    int getMaxSEStudents();
 }

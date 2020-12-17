@@ -9,4 +9,6 @@ public interface Infirmary_Service {
     void saveInfirmaryStudent(Infirmary infirmary);
     Infirmary getInfirmaryStudentById(long id);
     void deleteInfirmaryStudentById(long id);
+
+    int getMaxInfirmaryStudents();
 }
