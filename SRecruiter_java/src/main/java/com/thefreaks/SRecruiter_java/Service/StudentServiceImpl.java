@@ -22,6 +22,9 @@ import com.thefreaks.SRecruiter_java.Repository.UserRepository;
 import com.thefreaks.SRecruiter_java.Service.web.web_dto.UserRegistrationDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,8 +41,9 @@ public class StudentServiceImpl
     private SE_Repository se_repository;
 
     @Override
-    public int getMaxSEStudents() {
-        return se_repository.maxSEStudents();
+    public Page<SoftwareEngineering> findPaginatedSEPage(int pageNum, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+        return this.se_repository.findAll(pageable);
     }
 
     @Override
@@ -69,14 +73,15 @@ public class StudentServiceImpl
         this.se_repository.deleteById(id);
     }
 
-    //-------------------------------------------------------
+    // -------------------------------------------------------
     // Infirmary
     @Autowired
     private Infirmary_Repository infirmary_repository;
 
     @Override
-    public int getMaxInfirmaryStudents() {
-        return infirmary_repository.maxInfirmaryStudents();
+    public Page<Infirmary> findPaginatedInfirmaryPage(int pageNumInfirmary, int pageSizeInfirmary) {
+        Pageable pageable = PageRequest.of(pageNumInfirmary - 1, pageSizeInfirmary);
+        return this.infirmary_repository.findAll(pageable);
     }
 
     @Override
@@ -106,14 +111,15 @@ public class StudentServiceImpl
         this.infirmary_repository.deleteById(id);
     }
 
-    //-------------------------------------------------------
+    // -------------------------------------------------------
     // Graphic Design
     @Autowired
     private GD_Repository gd_repository;
 
     @Override
-    public int getMaxGDStudents() {
-        return gd_repository.maxGDStudents();
+    public Page<GraphicDesign> findPaginatedGDPage(int pageNumGD, int pageSizeGD) {
+        Pageable pageable = PageRequest.of(pageNumGD - 1, pageSizeGD);
+        return this.gd_repository.findAll(pageable);
     }
 
     @Override
@@ -143,14 +149,15 @@ public class StudentServiceImpl
         this.gd_repository.deleteById(id);
     }
 
-    //-------------------------------------------------------
+    // -------------------------------------------------------
     // English
     @Autowired
     private English_Repository english_repository;
 
     @Override
-    public int getMaxEnglishStudents() {
-        return english_repository.maxEnglishStudents();
+    public Page<English> findPaginatedEnglishPage(int pageNumEnglish, int pageSizeEnglish) {
+        Pageable pageable = PageRequest.of(pageNumEnglish - 1, pageSizeEnglish);
+        return this.english_repository.findAll(pageable);
     }
 
     @Override
@@ -180,14 +187,15 @@ public class StudentServiceImpl
         this.english_repository.deleteById(id);
     }
 
-    //-------------------------------------------------------
+    // -------------------------------------------------------
     // Business Management
     @Autowired
     private BM_Repository bm_repository;
 
     @Override
-    public int getMaxBMStudents() {
-        return bm_repository.maxBMStudents();
+    public Page<BusinessManagement> findPaginatedBMPage(int pageNumBM, int pageSizeBM) {
+        Pageable pageable = PageRequest.of(pageNumBM - 1, pageSizeBM);
+        return this.bm_repository.findAll(pageable);
     }
 
     @Override
@@ -217,14 +225,21 @@ public class StudentServiceImpl
         this.bm_repository.deleteById(id);
     }
 
-    //-------------------------------------------------------
+    // -------------------------------------------------------
+    // User
+    @Autowired
+    private UserRepository user_repository;
+
+    @Override
+    public Page<User> findPaginatedUserPage(int pageNumUser, int pageSizeUser) {
+        Pageable pageable = PageRequest.of(pageNumUser - 1, pageSizeUser);
+        return this.user_repository.findAll(pageable);
+    }
+
+    // -------------------------------------------------------
     // User registration
     @Autowired
     private UserRepository userRepository;
-
-    public int getMaxUserCount(){
-       return userRepository.maxUser();
-    }
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -245,11 +260,12 @@ public class StudentServiceImpl
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password!");
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+                mapRolesToAuthorities(user.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {

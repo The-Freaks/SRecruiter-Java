@@ -2,10 +2,13 @@ package com.thefreaks.SRecruiter_java.Controller;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 import com.thefreaks.SRecruiter_java.Model.BusinessManagement;
 import com.thefreaks.SRecruiter_java.Service.BM_Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,8 +23,7 @@ public class BMController {
    private BM_Service bm_service;
    @RequestMapping("/businessManagement")
    public String getBMPage(Model model){
-       model.addAttribute("BM_StudentList", bm_service.getAllBMStudents());
-       return "businessManagement";
+       return findBMPage(1, model);
    }
    // Add new business management student
    @RequestMapping("/addNewBMStudentForm")
@@ -48,5 +50,19 @@ public class BMController {
    public String deleteStudent_BM(@PathVariable (value = "id") long id){
        this.bm_service.deleteBMStudentById(id);
        return "redirect:/businessManagement";
+   }
+
+   @GetMapping("/businessManagement/{pageNumBM}")
+   public String findBMPage(@PathVariable (value = "pageNumBM") int pageNumBM ,Model model){
+       int pageSizeBM = 5;
+
+       Page<BusinessManagement> pageBM = bm_service.findPaginatedBMPage(pageNumBM, pageSizeBM);
+       List<BusinessManagement> listBMStudents = pageBM.getContent();
+       model.addAttribute("currentBMPage", pageNumBM);
+       model.addAttribute("totalBMPages", pageBM.getTotalPages());
+       model.addAttribute("totalBMItems", pageBM.getTotalElements());
+       model.addAttribute("BM_StudentList", listBMStudents);
+
+       return "businessManagement";
    }
 }

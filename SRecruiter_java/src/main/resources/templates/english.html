@@ -30,11 +30,11 @@
                 <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">Categories <span class="caret"></span></a>
                 <ul class="dropdown-menu animated fadeInLeft" role="menu">
                   <div class="dropdown-header">List of categories</div>
-                  <li><a class="dropdown-item" th:href="@{softwareEngineering}">Software Engineering</a></li>
-                  <li><a class="dropdown-item" th:href="@{graphicDesign}">Graphic Design</a></li>
-                  <li> <a class="dropdown-item" th:href="@{businessManagement}">Business Management</a></li>
-                  <li><a class="dropdown-item" th:href="@{english}">English</a></li>
-                  <li><a class="dropdown-item" th:href="@{infirmary}">Infirmary</a></li>
+                  <li><a class="dropdown-item" th:href="@{/softwareEngineering}">Software Engineering</a></li>
+                  <li><a class="dropdown-item" th:href="@{/graphicDesign}">Graphic Design</a></li>
+                  <li> <a class="dropdown-item" th:href="@{/businessManagement}">Business Management</a></li>
+                  <li><a class="dropdown-item" th:href="@{/english}">English</a></li>
+                  <li><a class="dropdown-item" th:href="@{/infirmary}">Infirmary</a></li>
                 </ul>
                 </li>
                 <li>
@@ -117,16 +117,23 @@
                                     
                                 </tbody>
                             </table>
-                            <div class="clearfix">
-                                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                            <div th:if= "${totalEnglishPages > 1}" class="clearfix">
+                                <div class="hint-text">Showing [[${currentEnglishPage}]] out of [[${totalEnglishPages}]] pages</div>
                                 <ul class="pagination">
-                                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                    <li class="page-item disabled">
+                                        <a th:if="${currentEnglishPage < totalEnglishPages}" th:href="@{'/english/' + ${totalEnglishPages}}" >Previous</a>
+                                        <a th:unless="${currentEnglishPage < totalEnglishPages}">Previous</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <span th:each = "i: ${#numbers.sequence(1, totalEnglishPages)}">
+                                            <a th:if="${currentEnglishPage != i}" th:href="@{'/english/' + ${i}}">[[${i}]]</a>
+                                            <span th:unless="${currentEnglishPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                                        </span>
+                                    </li>
+                                    <li class="page-item">
+                                        <a th:if="${currentEnglishPage < totalEnglishPages}" th:href="@{'/english/' + ${currentEnglishPage + 1}}" >Next</a>
+                                        <a th:unless="${currentEnglishPage < totalEnglishPages}" >Next</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

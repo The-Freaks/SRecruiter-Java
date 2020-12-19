@@ -2,10 +2,13 @@ package com.thefreaks.SRecruiter_java.Controller;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 import com.thefreaks.SRecruiter_java.Model.Infirmary;
 import com.thefreaks.SRecruiter_java.Service.Infirmary_Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,8 +23,7 @@ public class InfirmaryController {
    private Infirmary_Service infirmary_service;
    @RequestMapping("/infirmary")
    public String getInfirmaryPage(Model model){
-       model.addAttribute("Infirmary_StudentList", infirmary_service.getAllInfirmaryStudents());
-       return "infirmary";
+       return findInfirmaryPage(1, model);
    }
    // Add new infirmary student
    @RequestMapping("/addNewInfirmaryStudentForm")
@@ -48,5 +50,18 @@ public class InfirmaryController {
    public String deleteStudent_Infirmary(@PathVariable (value = "id") long id){
        this.infirmary_service.deleteInfirmaryStudentById(id);
        return "redirect:/infirmary";
+   }
+
+   @GetMapping("/infirmary/{pageNumInfirmary}")
+   public String findInfirmaryPage(@PathVariable (value = "pageNumInfirmary") int pageNumInfirmary ,Model model){
+       int pageSizeInfirmary = 5;
+
+       Page<Infirmary> pageInfirmary = infirmary_service.findPaginatedInfirmaryPage(pageNumInfirmary, pageSizeInfirmary);
+       List<Infirmary> listInfirmaryStudents = pageInfirmary.getContent();
+       model.addAttribute("currentInfirmaryPage", pageNumInfirmary);
+       model.addAttribute("totalInfirmaryPages", pageInfirmary.getTotalPages());
+       model.addAttribute("Infirmary_StudentList", listInfirmaryStudents);
+
+       return "infirmary";
    }
 }

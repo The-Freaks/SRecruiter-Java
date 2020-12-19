@@ -22,7 +22,7 @@
                     <div id="FirstID" >
                         <label class="whiteColor">First Name</label>
                     </div>
-                    <input type="text" th:field="*{firstName}">
+                    <input type="text" th:field="*{firstName}" required>
                 </div>
         
                 <!-- LastName LABEL INPUT-->
@@ -30,7 +30,7 @@
                     <div id="LastID">
                         <label class="whiteColor">Last Name</label>
                     </div>
-                    <input type="text" th:field="*{lastName}">
+                    <input type="text" th:field="*{lastName}" required>
                 </div>
         
                 <!-- Email LABEL INPUT-->
@@ -38,7 +38,7 @@
                     <div id="emailID">
                         <label class="whiteColor">Email</label>
                     </div>
-                    <input type="email" th:field="*{email}">
+                    <input type="email" th:field="*{email}" required>
                 </div>
         
                 <!-- PASSWORD LABEL INPUT-->
@@ -47,7 +47,7 @@
                         <div id="passID">
                             <label class="whiteColor">Phone Number</label>
                         </div>
-                        <input type="text" th:field="*{number}">
+                        <input type="text" th:field="*{number}" required>
                     </div>
                 </div>
         

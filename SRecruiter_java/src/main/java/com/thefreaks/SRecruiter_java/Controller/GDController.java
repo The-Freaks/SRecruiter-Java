@@ -2,10 +2,13 @@ package com.thefreaks.SRecruiter_java.Controller;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 import com.thefreaks.SRecruiter_java.Model.GraphicDesign;
 import com.thefreaks.SRecruiter_java.Service.GD_Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,8 +23,7 @@ public class GDController {
    private GD_Service gd_service;
    @RequestMapping("/graphicDesign")
    public String getGDPage(Model model){
-       model.addAttribute("GD_StudentList", gd_service.getAllGDStudents());
-       return "graphicDesign";
+       return findGDPage(1, model);
    }
    // Add new graphic design student
    @RequestMapping("/addNewGDStudentForm")
@@ -48,5 +50,19 @@ public class GDController {
    public String deleteStudent_GD(@PathVariable (value = "id") long id){
        this.gd_service.deleteGDStudentById(id);
        return "redirect:/graphicDesign";
+   }
+
+   @GetMapping("/graphicDesign/{pageNumGD}")
+   public String findGDPage(@PathVariable (value = "pageNumGD") int pageNumGD ,Model model){
+       int pageSizeGD = 5;
+
+       Page<GraphicDesign> pageGD = gd_service.findPaginatedGDPage(pageNumGD, pageSizeGD);
+       List<GraphicDesign> listGDStudents = pageGD.getContent();
+       model.addAttribute("currentGDPage", pageNumGD);
+       model.addAttribute("totalGDPages", pageGD.getTotalPages());
+       model.addAttribute("totalGDItems", pageGD.getTotalElements());
+       model.addAttribute("GD_StudentList", listGDStudents);
+
+       return "graphicDesign";
    }
 }
