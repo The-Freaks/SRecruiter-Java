@@ -1,21 +1,26 @@
-body {
-    margin: 0px;
-}
-
+/* Dashboard */
 #lefty {
     float: left;
     width: 49%;
     margin-left: 1%;
     margin-top: 1%;
-}
-
-#righty {
+  }
+  
+  #righty {
+    padding-left: 20px;
     float: right;
     width: 49%;
     margin-left: 1%;
     margin-top: 1%;
-}
-
-.box-1 {
     text-align: center;
-}
+  }
+  
+  .box-1 {
+    text-align: center;
+    font-size: 11px;
+  }
+
+  .textArrange{
+    text-align: justify;
+  }
+  /*-------------------*/
