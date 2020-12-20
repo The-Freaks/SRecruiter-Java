@@ -3,8 +3,7 @@
     <head>
         <meta charset="ISO-8859-1">
         <title>Home Page</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link th:href="@{/style/css/main.css}" rel="stylesheet" />
+       
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -12,6 +11,21 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <!-- BOOTSTRAP ELEMENTS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        
+
+        <!-- CHART ELEMENTS -->
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <!-- <script th:src="@{/style/js/chart-data.js}" ></script> -->
+        <script type="text/javascript" th:src="@{/style/js/main.js}"></script>
+
+        <!-- STYLESHEET ELEMENTS -->
+        <link rel="stylesheet" th:href="@{/style/css/dashboard.css}">
+        <link th:href="@{/style/css/main.css}" rel="stylesheet" />
     </head>
     <body>
         <div id="wrapper">
@@ -65,29 +79,101 @@
               <span class="hamb-bottom"></span>
             </button>
             <div class="container">
-              <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+              <div class="colum">
+                <div class="col-lg-12 col-lg-offset-12">
+                  <!-- 
                   <span>Total number of users: <p th:text="${Total_Users}"></p></span>
                   <span>Total number of students: <p th:text="${Count_All_Students}"></p></span>
                   <span>Total number of "Software Engineering" students: <p th:text="${totalSEItems}"></p></span>
                   <span>Total number of "Graphic Design" students: <p th:text="${totalGDItems}"></p></span>
                   <span>Total number of "Business Management" students: <p th:text="${totalBMItems}"></p></span>
                   <span>Total number of "English" students: <p th:text="${totalEnglishItems}"></p></span>
-                  <span>Total number of "Infirmary" students: <p th:text="${totalInfirmaryItems}"></p></span>
-                
-                  <!-- <h1>Welcome to SRecruiter Web Application</h1>
-                    <p>Bacon ipsum dolor sit amet tri-tip shoulder tenderloin shankle. Bresaola tail pancetta ball tip doner meatloaf corned beef. Kevin pastrami tri-tip prosciutto ham hock pork belly bacon pork loin salami pork chop shank corned beef tenderloin meatball cow. Pork bresaola meatloaf tongue, landjaeger tail andouille strip steak tenderloin sausage chicken tri-tip. Pastrami tri-tip kielbasa sausage porchetta pig sirloin boudin rump meatball andouille chuck tenderloin biltong shank </p>
-                    <p>Pig meatloaf bresaola, spare ribs venison short loin rump pork loin drumstick jowl meatball brisket. Landjaeger chicken fatback pork loin doner sirloin cow short ribs hamburger shoulder salami pastrami. Pork swine beef ribs t-bone flank filet mignon, ground round tongue. Tri-tip cow turducken shank beef shoulder bresaola tongue flank leberkas ball tip.</p>
-                    <p>Filet mignon brisket pancetta fatback short ribs short loin prosciutto jowl turducken biltong kevin pork chop pork beef ribs bresaola. Tongue beef ribs pastrami boudin. Chicken bresaola kielbasa strip steak biltong. Corned beef pork loin cow pig short ribs boudin bacon pork belly chicken andouille. Filet mignon flank turkey tongue. Turkey ball tip kielbasa pastrami flank tri-tip t-bone kevin landjaeger capicola tail fatback pork loin beef jerky.</p>
-                    <p>Chicken ham hock shankle, strip steak ground round meatball pork belly jowl pancetta sausage spare ribs. Pork loin cow salami pork belly. Tri-tip pork loin sausage jerky prosciutto t-bone bresaola frankfurter sirloin pork chop ribeye corned beef chuck. Short loin hamburger tenderloin, landjaeger venison porchetta strip steak turducken pancetta beef cow leberkas sausage beef ribs. Shoulder ham jerky kielbasa. Pig doner short loin pork chop. Short ribs frankfurter rump meatloaf.</p>
-                    <p>Filet mignon biltong chuck pork belly, corned beef ground round ribeye short loin rump swine. Hamburger drumstick turkey, shank rump biltong pork loin jowl sausage chicken. Rump pork belly fatback ball tip swine doner pig. Salami jerky cow, boudin pork chop sausage tongue andouille turkey.</p>                         
-                  </div> -->
+                  <span>Total number of "Infirmary" students: <p th:text="${totalInfirmaryItems}"></p></span> 
+                  -->
+                  <!-- LEFT DIV -->
+                <div id="lefty">
+                  <div class="container">
+                      <div class="row">
+
+                        <!--BOX 1 -->
+                        <div class="col-sm box-1">
+                          <div>
+                            <div class="card border-left-success shadow h-100 py-2">
+                              <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-success text-uppercase mb-1">Total number of students:</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800">[[${Count_All_Students}]]</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!--BOX 2 -->
+                          <div class="col-sm box-1">
+                            <div>
+                              <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                  <div class="row no-gutters align-items-center">
+                                    <div class="col mr-1">
+                                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total number of users:</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">[[${Total_Users}]]</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!--CHARTI -->
+                  <div style="padding: 15px">
+                      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                  </div>
+                </div>
+                <!-- RIGHT DIV -->
+                <div id="righty">
+                  <h4>Title goes here!</h4>
+                  <h4>Description</h4>
+                </div>
               </div>
             </div>
           </div>
-          <!-- /#page-content-wrapper -->
         </div>
-        <!-- /#wrapper -->
-        <script type="text/javascript" th:src="@{/style/js/main.js}"></script>
+
+        <script th:inline="javascript">
+
+          var totalSEStudents = "[[${totalSEItems}]]";
+          var totalGDStudents = "[[${totalGDItems}]]";
+          var totalBMStudents = "[[${totalBMItems}]]";
+          var totalEnglishStudents = "[[${totalEnglishItems}]]";
+          var totalInfirmaryStudents = "[[${totalInfirmaryItems}]]";
+
+          var chart = new CanvasJS.Chart("chartContainer", {
+              animationEnabled: true,
+              title: {
+                  // Arjanti type your text here or pass it as variable
+                  text: "SRecruiter"
+              },
+              data: [{
+                  type: "pie",
+                  startAngle: 240,
+                  indexLabel: "{label} {y}",
+                  dataPoints: [
+                      //qiti variablat e Javes prej query te Y nven te values,
+                      {y: totalSEStudents, label: "Software Engineering: "},
+                      {y: totalGDStudents, label: "Graphic Design: "},
+                      {y: totalBMStudents, label: "Business Management: "},
+                      {y: totalEnglishStudents, label: "English: "},
+                      {y: totalInfirmaryStudents, label: "Infirmary: "}
+                  ]
+              }]
+          });
+          chart.render();
+        </script>
     </body>
 </html>

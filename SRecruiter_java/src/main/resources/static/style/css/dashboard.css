@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+}
+
+#lefty {
+    float: left;
+    width: 49%;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+#righty {
+    float: right;
+    width: 49%;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.box-1 {
+    text-align: center;
+}

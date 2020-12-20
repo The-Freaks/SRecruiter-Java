@@ -1,11 +1,10 @@
 body {
-	color: #566787;
-	background: #f5f5f5;
+	background: white;
 	font-family: 'Varela Round', sans-serif;
 	font-size: 13px;
 	position: relative;
     overflow-x: hidden;
-    background-color: #CFD8DC;
+    background-color: white;
 }
 
 .addNewUser{
