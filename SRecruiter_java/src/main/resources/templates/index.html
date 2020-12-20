@@ -132,17 +132,9 @@
         </div>
         <script type="text/javascript" th:src="@{/style/js/main.js}"></script>
         <script th:inline="javascript">
-
-          var totalSEStudents = "[[${totalSEItems}]]";
-          var totalGDStudents = "[[${totalGDItems}]]";
-          var totalBMStudents = "[[${totalBMItems}]]";
-          var totalEnglishStudents = "[[${totalEnglishItems}]]";
-          var totalInfirmaryStudents = "[[${totalInfirmaryItems}]]";
-
           var chart = new CanvasJS.Chart("chartContainer", {
               animationEnabled: true,
               title: {
-                  // Arjanti type your text here or pass it as variable
                   text: "Student chart"
               },
               data: [{
@@ -150,12 +142,11 @@
                   startAngle: 240,
                   indexLabel: "{label} {y}",
                   dataPoints: [
-                      //qiti variablat e Javes prej query te Y nven te values,
-                      {y: totalSEStudents, label: "Software Engineering: "},
-                      {y: totalGDStudents, label: "Graphic Design: "},
-                      {y: totalBMStudents, label: "Business Management: "},
-                      {y: totalEnglishStudents, label: "English: "},
-                      {y: totalInfirmaryStudents, label: "Infirmary: "}
+                      {y: "[[${totalSEItems}]]", label: "Software Engineering: "},
+                      {y: "[[${totalGDItems}]]", label: "Graphic Design: "},
+                      {y: "[[${totalBMItems}]]", label: "Business Management: "},
+                      {y: "[[${totalEnglishItems}]]", label: "English: "},
+                      {y: "[[${totalInfirmaryItems}]]", label: "Infirmary: "}
                   ]
               }]
           });
