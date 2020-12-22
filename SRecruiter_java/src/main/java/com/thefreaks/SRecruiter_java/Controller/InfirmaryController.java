@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class InfirmaryController {
@@ -25,6 +27,7 @@ public class InfirmaryController {
    public String getInfirmaryPage(Model model){
        return findInfirmaryPage(1, model);
    }
+
    // Add new infirmary student
    @RequestMapping("/addNewInfirmaryStudentForm")
    public String addNewInfirmaryStudent(Model model){
@@ -32,19 +35,29 @@ public class InfirmaryController {
        model.addAttribute("Infirmary_Student", infirmary);
        return "admin/new_Infirmary_student";
    }
+
+   // Get Infirmary Student By Id
+   @GetMapping("/getOneInfirmaryStudent")
+   @ResponseBody
+   public Infirmary getOne(long id){
+       Infirmary infirmary = infirmary_service.getInfirmaryStudentById(id);
+       return infirmary;
+   }
+
    // Save Infirmary Student
    @PostMapping("/saveInfirmaryStudent")
    public String saveInfirmaryStudent(@ModelAttribute("Infirmary_Student") Infirmary infirmary){
        infirmary_service.saveInfirmaryStudent(infirmary);
        return "redirect:/infirmary";
    }
-   // Update Infirmary Student
-   @GetMapping("/showFormForUpdate_Infirmary/{id}")
-   public String showFormForUpdate_Infirmary(@PathVariable (value = "id") long id, Model model){
-       Infirmary infirmary = infirmary_service.getInfirmaryStudentById(id);
-       model.addAttribute("Infirmary_Student", infirmary);
-       return "admin/new_Infirmary_student";
+
+   // Update Software Engineering Student
+   @RequestMapping(value = "/updateInfirmaryStudent", method = {RequestMethod.PUT, RequestMethod.GET})
+   public String showFormForUpdate_Infirmary(Infirmary infirmary){
+       infirmary_service.saveInfirmaryStudent(infirmary);
+       return "redirect:/infirmary";
    }
+
    // Delete Infirmary Student
    @GetMapping("/deleteStudent_Infirmary/{id}")
    public String deleteStudent_Infirmary(@PathVariable (value = "id") long id){

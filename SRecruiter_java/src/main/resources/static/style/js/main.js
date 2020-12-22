@@ -1,3 +1,4 @@
+/** Modal delete button */
 $(document).ready(function () {
     var trigger = $('.hamburger'),
         overlay = $('.overlay'),
@@ -26,3 +27,34 @@ $(document).ready(function () {
           $('#wrapper').toggleClass('toggled');
     });  
   });
+
+/** Modal buttons */
+$(document).ready(function () {
+  /** Modal edit button */
+  $('.table .edit').on('click', function(event) {
+    event.preventDefault();
+      
+    var href = $(this).attr('href');
+
+    $.get(href, function (student) {
+      $('#idEdit').val(student.id);
+      $('#firstNameEdit').val(student.firstName);
+      $('#lastNameEdit').val(student.lastName);
+      $('#emailEdit').val(student.email);
+      $('#numberEdit').val(student.number);
+      });
+
+  $('#editStudentModal').modal();
+  });
+
+  /** Modal delete button */
+  $('.table .delete').on('click', function(event) {
+    event.preventDefault();
+      
+    var href = $(this).attr('href');
+
+    $.get(href, function () {});
+
+    $('#deleteStudentModal').modal();
+  });
+});

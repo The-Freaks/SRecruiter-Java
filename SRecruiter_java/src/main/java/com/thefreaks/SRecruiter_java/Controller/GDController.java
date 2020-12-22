@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class GDController {
@@ -25,6 +27,7 @@ public class GDController {
    public String getGDPage(Model model){
        return findGDPage(1, model);
    }
+
    // Add new graphic design student
    @RequestMapping("/addNewGDStudentForm")
    public String addNewGDStudent(Model model){
@@ -32,19 +35,29 @@ public class GDController {
        model.addAttribute("GD_Student", graphicDesign);
        return "admin/new_GD_student";
    }
+
+   // Get Graphic Design Student By Id
+   @GetMapping("/getOneGDStudent")
+   @ResponseBody
+   public GraphicDesign getOne(long id){
+       GraphicDesign graphicDesign = gd_service.getGDStudentById(id);
+       return graphicDesign;
+   }
+
    // Save Graphic Design Student
    @PostMapping("/saveGDStudent")
    public String saveGDStudent(@ModelAttribute("GD_Student") GraphicDesign graphicDesign){
        gd_service.saveGDStudent(graphicDesign);
        return "redirect:/graphicDesign";
    }
+
    // Update Graphic Design Student
-   @GetMapping("/showFormForUpdate_GD/{id}")
-   public String showFormForUpdate_GD(@PathVariable (value = "id") long id, Model model){
-       GraphicDesign graphicDesign = gd_service.getGDStudentById(id);
-       model.addAttribute("GD_Student", graphicDesign);
-       return "admin/new_GD_student";
+   @RequestMapping(value = "/updateGDStudent", method = {RequestMethod.PUT, RequestMethod.GET})
+   public String showFormForUpdate_GD(GraphicDesign graphicDesign){
+       gd_service.saveGDStudent(graphicDesign);
+       return "redirect:/graphicDesign";
    }
+
    // Delete Graphic Design Student
    @GetMapping("/deleteStudent_GD/{id}")
    public String deleteStudent_GD(@PathVariable (value = "id") long id){

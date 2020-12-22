@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class EnglishController {
     // Display the english student list
@@ -24,6 +26,7 @@ public class EnglishController {
    public String getEnglishPage(Model model){
        return findEnglishPage(1, model);
    }
+
    // Add new english student
    @RequestMapping("/addNewEnglishStudentForm")
    public String addNewEnglishStudent(Model model){
@@ -31,19 +34,29 @@ public class EnglishController {
        model.addAttribute("English_Student", english);
        return "admin/new_English_student";
    }
+
+   // Get English Student By Id
+   @GetMapping("/getOneEnglishStudent")
+   @ResponseBody
+   public English getOne(long id){
+       English english = english_service.getEnglishStudentById(id);
+       return english;
+   }
+
    // Save English Student
    @PostMapping("/saveEnglishStudent")
    public String saveEnglishStudent(@ModelAttribute("English_Student") English english){
        english_service.saveEnglishStudent(english);
        return "redirect:/english";
    }
+
    // Update English Student
-   @GetMapping("/showFormForUpdate_English/{id}")
-   public String showFormForUpdate_English(@PathVariable (value = "id") long id, Model model){
-       English english = english_service.getEnglishStudentById(id);
-       model.addAttribute("English_Student", english);
-       return "admin/new_English_student";
+   @RequestMapping(value = "/updateEnglishStudent", method = {RequestMethod.PUT, RequestMethod.GET})
+   public String showFormForUpdate_English(English english){
+       english_service.saveEnglishStudent(english);
+       return "redirect:/english";
    }
+
    // Delete English Student
    @GetMapping("/deleteStudent_English/{id}")
    public String deleteStudent_English(@PathVariable (value = "id") long id){

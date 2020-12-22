@@ -1,5 +1,7 @@
 package com.thefreaks.SRecruiter_java.Controller;
 
+// import java.util.Optional;
+
 import com.thefreaks.SRecruiter_java.Model.SoftwareEngineering;
 import com.thefreaks.SRecruiter_java.Service.SE_Service;
 
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+// import java.util.List;
 
 @Controller
 public class SEController {
@@ -24,6 +28,7 @@ public class SEController {
    public String getSEPage(Model model){
        return findSEPage(1, model);
    }
+
    // Add new software engineering student
    @RequestMapping("/addNewSEStudentForm")
    public String addNewSEStudent(Model model){
@@ -31,19 +36,29 @@ public class SEController {
        model.addAttribute("SE_Student", softwareEngineering);
        return "admin/new_SE_student";
    }
+
+   // Get Software Engineering Student By Id
+   @GetMapping("/getOneSEStudent")
+   @ResponseBody
+   public SoftwareEngineering getOne(long id){
+       SoftwareEngineering softwareEngineering = se_service.getSEStudentById(id);
+       return softwareEngineering;
+   }
+
    // Save Software Engineering Student
    @PostMapping("/saveSEStudent")
    public String saveSEStudent(@ModelAttribute("SE_Student") SoftwareEngineering softwareEngineering){
        se_service.saveSEStudent(softwareEngineering);
        return "redirect:/softwareEngineering";
    }
+
    // Update Software Engineering Student
-   @GetMapping("/showFormForUpdate_SE/{id}")
-   public String showFormForUpdate_SE(@PathVariable (value = "id") long id, Model model){
-       SoftwareEngineering softwareEngineering = se_service.getSEStudentById(id);
-       model.addAttribute("SE_Student", softwareEngineering);
-       return "admin/new_SE_student";
+   @RequestMapping(value = "/updateSEStudent", method = {RequestMethod.PUT, RequestMethod.GET})
+   public String showFormForUpdate_SE(SoftwareEngineering softwareEngineering){
+       se_service.saveSEStudent(softwareEngineering);
+       return "redirect:/softwareEngineering";
    }
+
    // Delete Software Engineering Student
    @GetMapping("/deleteStudent_SE/{id}")
    public String deleteStudent_SE(@PathVariable (value = "id") long id){
@@ -56,12 +71,12 @@ public class SEController {
        int pageSizeSE = 5;
 
        Page<SoftwareEngineering> pageSE = se_service.findPaginatedSEPage(pageNumSE, pageSizeSE);
-       List<SoftwareEngineering> listSEStudents = pageSE.getContent();
+    //    List<SoftwareEngineering> listSEStudents = pageSE.getContent();
        model.addAttribute("currentSEPage", pageNumSE);
        model.addAttribute("totalSEPages", pageSE.getTotalPages());
        model.addAttribute("totalSEItems", pageSE.getTotalElements());
-       model.addAttribute("SE_StudentList", listSEStudents);
-    //    model.addAttribute("SE_StudentList", se_service.getAllSEStudents());
+    //    model.addAttribute("SE_StudentList", listSEStudents);
+       model.addAttribute("SE_StudentList", se_service.getAllSEStudents());
 
        return "softwareEngineering";
    }
