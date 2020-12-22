@@ -28,14 +28,6 @@ public class InfirmaryController {
        return findInfirmaryPage(1, model);
    }
 
-   // Add new infirmary student
-   @RequestMapping("/addNewInfirmaryStudentForm")
-   public String addNewInfirmaryStudent(Model model){
-       Infirmary infirmary = new Infirmary();
-       model.addAttribute("Infirmary_Student", infirmary);
-       return "admin/new_Infirmary_student";
-   }
-
    // Get Infirmary Student By Id
    @GetMapping("/getOneInfirmaryStudent")
    @ResponseBody
@@ -70,7 +62,7 @@ public class InfirmaryController {
        int pageSizeInfirmary = 5;
 
        Page<Infirmary> pageInfirmary = infirmary_service.findPaginatedInfirmaryPage(pageNumInfirmary, pageSizeInfirmary);
-       List<Infirmary> listInfirmaryStudents = pageInfirmary.getContent();
+       List<Infirmary> listInfirmaryStudents = infirmary_service.getAllInfirmaryStudents();
        model.addAttribute("currentInfirmaryPage", pageNumInfirmary);
        model.addAttribute("totalInfirmaryPages", pageInfirmary.getTotalPages());
        model.addAttribute("Infirmary_StudentList", listInfirmaryStudents);

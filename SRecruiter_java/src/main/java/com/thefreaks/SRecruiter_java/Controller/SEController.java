@@ -1,6 +1,6 @@
 package com.thefreaks.SRecruiter_java.Controller;
 
-// import java.util.Optional;
+import java.util.List;
 
 import com.thefreaks.SRecruiter_java.Model.SoftwareEngineering;
 import com.thefreaks.SRecruiter_java.Service.SE_Service;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// import java.util.List;
-
 @Controller
 public class SEController {
     // Display the software engineering students list
@@ -27,14 +25,6 @@ public class SEController {
    @RequestMapping("/softwareEngineering")
    public String getSEPage(Model model){
        return findSEPage(1, model);
-   }
-
-   // Add new software engineering student
-   @RequestMapping("/addNewSEStudentForm")
-   public String addNewSEStudent(Model model){
-       SoftwareEngineering softwareEngineering = new SoftwareEngineering();
-       model.addAttribute("SE_Student", softwareEngineering);
-       return "admin/new_SE_student";
    }
 
    // Get Software Engineering Student By Id
@@ -71,12 +61,11 @@ public class SEController {
        int pageSizeSE = 5;
 
        Page<SoftwareEngineering> pageSE = se_service.findPaginatedSEPage(pageNumSE, pageSizeSE);
-    //    List<SoftwareEngineering> listSEStudents = pageSE.getContent();
+       List<SoftwareEngineering> listSEStudents = se_service.getAllSEStudents();
        model.addAttribute("currentSEPage", pageNumSE);
        model.addAttribute("totalSEPages", pageSE.getTotalPages());
        model.addAttribute("totalSEItems", pageSE.getTotalElements());
-    //    model.addAttribute("SE_StudentList", listSEStudents);
-       model.addAttribute("SE_StudentList", se_service.getAllSEStudents());
+       model.addAttribute("SE_StudentList", listSEStudents);
 
        return "softwareEngineering";
    }

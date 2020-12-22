@@ -28,14 +28,6 @@ public class GDController {
        return findGDPage(1, model);
    }
 
-   // Add new graphic design student
-   @RequestMapping("/addNewGDStudentForm")
-   public String addNewGDStudent(Model model){
-       GraphicDesign graphicDesign = new GraphicDesign();
-       model.addAttribute("GD_Student", graphicDesign);
-       return "admin/new_GD_student";
-   }
-
    // Get Graphic Design Student By Id
    @GetMapping("/getOneGDStudent")
    @ResponseBody
@@ -70,7 +62,7 @@ public class GDController {
        int pageSizeGD = 5;
 
        Page<GraphicDesign> pageGD = gd_service.findPaginatedGDPage(pageNumGD, pageSizeGD);
-       List<GraphicDesign> listGDStudents = pageGD.getContent();
+       List<GraphicDesign> listGDStudents = gd_service.getAllGDStudents();
        model.addAttribute("currentGDPage", pageNumGD);
        model.addAttribute("totalGDPages", pageGD.getTotalPages());
        model.addAttribute("totalGDItems", pageGD.getTotalElements());

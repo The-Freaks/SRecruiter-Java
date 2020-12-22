@@ -28,14 +28,6 @@ public class BMController {
        return findBMPage(1, model);
    }
 
-   // Add new business management student
-   @RequestMapping("/addNewBMStudentForm")
-   public String addNewBMStudent(Model model){
-       BusinessManagement businessManagement = new BusinessManagement();
-       model.addAttribute("BM_Student", businessManagement);
-       return "admin/new_BM_student";
-   }
-
    // Get Business Management Student By Id
    @GetMapping("/getOneBMStudent")
    @ResponseBody
@@ -70,7 +62,7 @@ public class BMController {
        int pageSizeBM = 5;
 
        Page<BusinessManagement> pageBM = bm_service.findPaginatedBMPage(pageNumBM, pageSizeBM);
-       List<BusinessManagement> listBMStudents = pageBM.getContent();
+       List<BusinessManagement> listBMStudents = bm_service.getAllBMStudents();
        model.addAttribute("currentBMPage", pageNumBM);
        model.addAttribute("totalBMPages", pageBM.getTotalPages());
        model.addAttribute("totalBMItems", pageBM.getTotalElements());

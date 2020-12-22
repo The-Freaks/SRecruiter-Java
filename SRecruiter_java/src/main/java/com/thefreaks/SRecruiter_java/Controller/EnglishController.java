@@ -27,14 +27,6 @@ public class EnglishController {
        return findEnglishPage(1, model);
    }
 
-   // Add new english student
-   @RequestMapping("/addNewEnglishStudentForm")
-   public String addNewEnglishStudent(Model model){
-       English english = new English();
-       model.addAttribute("English_Student", english);
-       return "admin/new_English_student";
-   }
-
    // Get English Student By Id
    @GetMapping("/getOneEnglishStudent")
    @ResponseBody
@@ -69,7 +61,7 @@ public class EnglishController {
        int pageSizeEnglish = 5;
 
        Page<English> pageEnglish = english_service.findPaginatedEnglishPage(pageNumEnglish, pageSizeEnglish);
-       List<English> listEnglishStudents = pageEnglish.getContent();
+       List<English> listEnglishStudents = english_service.getAllEnglishStudents();
        model.addAttribute("currentEnglishPage", pageNumEnglish);
        model.addAttribute("totalEnglishPages", pageEnglish.getTotalPages());
        model.addAttribute("totalEnglishItems", pageEnglish.getTotalElements());
