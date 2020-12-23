@@ -62,7 +62,7 @@ public class InfirmaryController {
        int pageSizeInfirmary = 5;
 
        Page<Infirmary> pageInfirmary = infirmary_service.findPaginatedInfirmaryPage(pageNumInfirmary, pageSizeInfirmary);
-       List<Infirmary> listInfirmaryStudents = infirmary_service.getAllInfirmaryStudents();
+       List<Infirmary> listInfirmaryStudents = pageInfirmary.getContent();
        model.addAttribute("currentInfirmaryPage", pageNumInfirmary);
        model.addAttribute("totalInfirmaryPages", pageInfirmary.getTotalPages());
        model.addAttribute("Infirmary_StudentList", listInfirmaryStudents);

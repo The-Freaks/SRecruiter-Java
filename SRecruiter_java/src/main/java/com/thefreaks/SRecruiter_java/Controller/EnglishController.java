@@ -61,7 +61,7 @@ public class EnglishController {
        int pageSizeEnglish = 5;
 
        Page<English> pageEnglish = english_service.findPaginatedEnglishPage(pageNumEnglish, pageSizeEnglish);
-       List<English> listEnglishStudents = english_service.getAllEnglishStudents();
+       List<English> listEnglishStudents = pageEnglish.getContent();
        model.addAttribute("currentEnglishPage", pageNumEnglish);
        model.addAttribute("totalEnglishPages", pageEnglish.getTotalPages());
        model.addAttribute("totalEnglishItems", pageEnglish.getTotalElements());

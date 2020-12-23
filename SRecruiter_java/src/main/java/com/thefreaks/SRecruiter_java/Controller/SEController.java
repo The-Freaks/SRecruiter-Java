@@ -61,7 +61,7 @@ public class SEController {
        int pageSizeSE = 5;
 
        Page<SoftwareEngineering> pageSE = se_service.findPaginatedSEPage(pageNumSE, pageSizeSE);
-       List<SoftwareEngineering> listSEStudents = se_service.getAllSEStudents();
+       List<SoftwareEngineering> listSEStudents = pageSE.getContent();
        model.addAttribute("currentSEPage", pageNumSE);
        model.addAttribute("totalSEPages", pageSE.getTotalPages());
        model.addAttribute("totalSEItems", pageSE.getTotalElements());

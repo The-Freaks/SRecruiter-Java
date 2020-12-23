@@ -62,7 +62,7 @@ public class BMController {
        int pageSizeBM = 5;
 
        Page<BusinessManagement> pageBM = bm_service.findPaginatedBMPage(pageNumBM, pageSizeBM);
-       List<BusinessManagement> listBMStudents = bm_service.getAllBMStudents();
+       List<BusinessManagement> listBMStudents = pageBM.getContent();
        model.addAttribute("currentBMPage", pageNumBM);
        model.addAttribute("totalBMPages", pageBM.getTotalPages());
        model.addAttribute("totalBMItems", pageBM.getTotalElements());

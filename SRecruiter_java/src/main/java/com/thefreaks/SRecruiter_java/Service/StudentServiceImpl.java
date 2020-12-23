@@ -1,6 +1,5 @@
 package com.thefreaks.SRecruiter_java.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.Arrays;
@@ -47,11 +46,6 @@ public class StudentServiceImpl
     }
 
     @Override
-    public List<SoftwareEngineering> getAllSEStudents() {
-        return se_repository.findAll();
-    }
-
-    @Override
     public void saveSEStudent(SoftwareEngineering softwareEngineering) {
         this.se_repository.save(softwareEngineering);
     }
@@ -82,11 +76,6 @@ public class StudentServiceImpl
     public Page<Infirmary> findPaginatedInfirmaryPage(int pageNumInfirmary, int pageSizeInfirmary) {
         Pageable pageable = PageRequest.of(pageNumInfirmary - 1, pageSizeInfirmary);
         return this.infirmary_repository.findAll(pageable);
-    }
-
-    @Override
-    public List<Infirmary> getAllInfirmaryStudents() {
-        return infirmary_repository.findAll();
     }
 
     @Override
@@ -123,11 +112,6 @@ public class StudentServiceImpl
     }
 
     @Override
-    public List<GraphicDesign> getAllGDStudents() {
-        return gd_repository.findAll();
-    }
-
-    @Override
     public void saveGDStudent(GraphicDesign graphicDesign) {
         this.gd_repository.save(graphicDesign);
     }
@@ -161,11 +145,6 @@ public class StudentServiceImpl
     }
 
     @Override
-    public List<English> getAllEnglishStudents() {
-        return english_repository.findAll();
-    }
-
-    @Override
     public void saveEnglishStudent(English english) {
         this.english_repository.save(english);
     }
@@ -196,11 +175,6 @@ public class StudentServiceImpl
     public Page<BusinessManagement> findPaginatedBMPage(int pageNumBM, int pageSizeBM) {
         Pageable pageable = PageRequest.of(pageNumBM - 1, pageSizeBM);
         return this.bm_repository.findAll(pageable);
-    }
-
-    @Override
-    public List<BusinessManagement> getAllBMStudents() {
-        return bm_repository.findAll();
     }
 
     @Override

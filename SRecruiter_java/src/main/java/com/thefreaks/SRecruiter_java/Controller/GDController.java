@@ -62,7 +62,7 @@ public class GDController {
        int pageSizeGD = 5;
 
        Page<GraphicDesign> pageGD = gd_service.findPaginatedGDPage(pageNumGD, pageSizeGD);
-       List<GraphicDesign> listGDStudents = gd_service.getAllGDStudents();
+       List<GraphicDesign> listGDStudents = pageGD.getContent();
        model.addAttribute("currentGDPage", pageNumGD);
        model.addAttribute("totalGDPages", pageGD.getTotalPages());
        model.addAttribute("totalGDItems", pageGD.getTotalElements());
